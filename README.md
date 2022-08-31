@@ -1,3 +1,5 @@
+https://user-images.githubusercontent.com/24226542/187653022-e2f91534-8fcc-448f-ab81-ead0b1efc39c.mp4
+
 # CustomerFilter
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
