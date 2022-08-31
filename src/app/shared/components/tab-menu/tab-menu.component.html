@@ -1,0 +1,19 @@
+
+<div class="tabs-container">
+    <div *ngFor="let operatorTab of operatorTabs"
+        class="operator-tab"
+        [class.active]="operatorTab.title === activeTab.title"
+        (click)="activeTab = operatorTab">
+        <div class="tab-header">
+            <span class="material-icons-outlined tab-icon">{{ operatorTab.icon }}</span>
+            <span class="tab-title">{{ operatorTab.title }}</span>
+        </div>
+    </div>
+</div>
+<div class="tab-options">
+    <div class="menu-option"
+        *ngFor="let option of activeTab.options"
+        (click)="optionChange.emit(option)">
+        {{ option }}
+    </div>
+</div>

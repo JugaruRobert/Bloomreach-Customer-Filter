@@ -1,0 +1,29 @@
+@import "assets/styles/variables.scss";
+
+.select-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    padding: 10px 12px;
+    border: 1px solid $border-light-grey;
+    border-radius: 4px;
+    background-color: $light-grey;
+    cursor: pointer;
+
+    .placeholder-text {
+        color: $text-placeholder;
+        font-weight: normal;
+    }
+}
+
+.options-container {
+    position: absolute;
+    padding-top: 6px;
+    background-color: $white;
+    box-shadow: $elevation-2;
+    border-radius: 4px;
+    margin-top: 7px;
+    z-index: 1000;
+}

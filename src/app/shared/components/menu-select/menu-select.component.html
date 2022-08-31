@@ -1,0 +1,20 @@
+<div class="menu-select">
+    <div class="select-trigger" (click)="toggleMenu()">
+        <span [class.placeholder-text]="!selectedOption">
+            {{ selectedOption || placeholder}}
+        </span>
+        <span class="material-icons-outlined md-18">expand_more</span>
+    </div>
+    <div class="options-container" *ngIf="menuOpen">
+        <search-menu *ngIf="type === 'search'"
+            [options]="options"
+            [tag]="tag"
+            [placeholder]="searchPlaceholder"
+            (optionChange)="selectOption($event)">
+        </search-menu>
+        <tab-menu *ngIf="type === 'tab'"
+            [selected]="selected"
+            (optionChange)="selectOption($event)">
+        </tab-menu>
+    </div>
+</div>

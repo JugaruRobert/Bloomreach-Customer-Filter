@@ -1,0 +1,18 @@
+<div class="customer-filter">
+    <span class="title">Customer Filter</span>
+    <span class="discard-filters" (click)="discardFilters()">Discard filters</span>
+    <div class="filters-container">
+        <filter-step *ngFor="let filter of filters; let filterIdx = index"
+            class="filter"
+            [index]="filterIdx"
+            [filter]="filter"
+            [canDelete]="filters.length > 1"
+            [customerEvents]="customerEvents"
+            [operatorTypes]="operatorTypes"
+            (copyFilter)="copyFilter($event)"
+            (deleteFilter)="deleteFilter($event)">
+        </filter-step>
+        <div class="add-funnel-step" (click)="addFunnelStep()">+ Add Funnel Step</div>
+    </div>
+    <primary-button [text]="'Apply filters'" class="apply-filters" (click)="applyFilters()"></primary-button>
+</div>

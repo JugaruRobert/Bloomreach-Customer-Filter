@@ -1,0 +1,40 @@
+@import "assets/styles/variables.scss";
+
+.material-icons-outlined {
+    color: $text-light-grey;
+    cursor: pointer;
+
+    &.md-18 {
+        font-size: 18px;
+    }    
+}
+
+.custom-input {
+    max-width: 250px;
+    border: 1px solid $border-light-grey;
+    border-radius: 4px;
+    outline: none;
+    background-color: $white;
+    padding: 10px 12px;
+    font-size: 14px;
+    height: 18px;
+    font-family: $bloomreach-sans;
+
+    &::placeholder {
+        color: $text-placeholder;
+    }
+}
+
+.toast-message {
+    font-weight: normal;
+}
+
+.menu-option {
+    padding: 12px;
+    font-weight: normal;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $brand-primary;
+    }
+}

@@ -1,0 +1,11 @@
+<div class="search-container">
+    <span *ngIf="tag" class="search-tag">{{ tag }}</span>
+    <input #searchInput [autofocus]="true" class="search-input" [placeholder]="placeholder">
+</div>
+<div class="options-container">
+    <div *ngFor="let option of filteredOptions"
+        class="menu-option"
+        (click)="optionChange.emit(option)">
+        {{ option }}
+    </div>
+</div>

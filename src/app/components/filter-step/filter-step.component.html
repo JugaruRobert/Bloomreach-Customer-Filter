@@ -1,0 +1,77 @@
+<div class="filter-step">
+    <div class="filter-header">
+        <div class="filter-title" [class.edit-mode]="nameEditMode">
+            <span class="step-index">{{ index + 1 }}. Step:</span>
+            <ng-container *ngIf="!nameEditMode; else editMode">
+                <span class="step-name">{{ filter.name }}</span>
+                <span class="material-icons-outlined md-18" (click)="nameEditMode = true">edit</span>
+            </ng-container>
+            <ng-template #editMode>
+                <input *ngIf="nameEditMode"
+                    type="text"
+                    class="custom-input"
+                    [autofocus]="true"
+                    [(ngModel)]="filter.name"
+                    (blur)="stepRenamed()"/>
+                <span class="material-icons-outlined md-18">done</span>
+            </ng-template>
+        </div>
+        <div class="filter-actions">
+            <span *ngIf="canDelete" class="material-icons-outlined" (click)="deleteFilter.emit(index)">delete</span>
+            <span class="material-icons-outlined" (click)="copyFilter.emit(filter)">copy</span>
+        </div>
+    </div>
+    <div class="filter-config">
+        <menu-select class="filter-event"
+            [placeholder]="'Select an event'"
+            [searchPlaceholder]="'Filter events...'"
+            [options]="customerEventOptions"
+            [autofocus]="index > 0"
+            [selected]="filter.event"
+            (change)="filterEventChanged($event)">
+        </menu-select>
+        <div class="rules-container" *ngIf="filter.event">
+            <span *ngIf="!filter.rules.length; else rules" class="add-attribute" (click)="addFilterRule()">
+                + Add an event attribute
+            </span>
+            <ng-template #rules>
+                <div class="filter-rule" *ngFor="let rule of filter.rules; let ruleIndex = index">
+                    <span *ngIf="ruleIndex > 0" class="rule-and">and</span>
+                    <menu-select class="event-attribute"
+                        [autofocus]="true"
+                        [placeholder]="'Select an attribute'"
+                        [searchPlaceholder]="'Filter attributes...'"
+                        [options]="eventAttributeOptions"
+                        [selected]="rule.attribute"
+                        [tag]="filter.event"
+                        (change)="ruleAttributeChange($event, rule)">
+                    </menu-select>
+                    <menu-select *ngIf="rule.attribute"
+                        [type]="'tab'"
+                        [selected]="rule.operator"
+                        (change)="ruleOperatorChange($event, rule)">
+                    </menu-select>
+                    <ng-container *ngIf="rule.attribute">
+                        <input *ngIf="operatorTypes[rule.operator] === 'string'; else numberInput"
+                            type="text"
+                            class="custom-input"
+                            [(ngModel)]="rule.value"
+                            placeholder="Select a value" />
+                        <ng-template #numberInput>
+                            <ng-container *ngIf="rule.operator !== 'in between'; else inBetween">
+                                <input type="number" class="custom-input" [(ngModel)]="rule.value" />
+                            </ng-container>
+                            <ng-template #inBetween>
+                                <input type="number" class="custom-input" [(ngModel)]="rule.value[0]" />
+                                <span>AND</span>
+                                <input type="number" class="custom-input" [(ngModel)]="rule.value[1]" />
+                            </ng-template>
+                        </ng-template>
+                    </ng-container>
+                    <span class="material-icons-outlined delete-rule-icon" (click)="removeRule(ruleIndex)">close</span>
+                </div>
+                <span class="refine-more" (click)="addFilterRule()">Refine more</span>
+            </ng-template>
+        </div>
+    </div>
+</div>

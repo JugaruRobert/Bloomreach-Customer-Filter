@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "-": "^0.0.1",
+    "@angular/animations": "^14.2.0",
+    "@angular/cli": "^14.2.1",
+    "@angular/core": "^14.2.0",
+    "@angular/forms": "^14.2.0",
+    "@angular/platform-browser-dynamic": "^14.2.0",
+    "g": "^2.0.1",
+    "ngx-toastr": "^15.0.0",
+    "save": "^2.5.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.2.1"
+  }
+}
